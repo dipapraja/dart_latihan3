@@ -1,4 +1,20 @@
 void hitungBMI(double tinggiCm, double beratKg, List<Map<String, dynamic>> riwayat) {
+  if (tinggiCm <= 0 || beratKg <= 0) {
+      throw Exception("Tinggi dan berat harus lebih dari 0");
+  }
+  double tinggiM = tinggiCm / 100;
+  double bmi = beratKg / (tinggiM * tinggiM);
+
+  String kategori;
+  if (bmi < 18.5) {
+    kategori = "Kurus";
+  } else if (bmi < 25) {
+    kategori = "Normal";
+  } else if (bmi < 30) {
+    kategori = "Gemuk";
+  } else {
+    kategori = "Obesitas";
+  }
   riwayat.add({
     'tinggi': tinggiCm,
     'berat': beratKg,
@@ -10,5 +26,5 @@ void hitungBMI(double tinggiCm, double beratKg, List<Map<String, dynamic>> riway
 void tampilkanRiwayat(List<Map<String, dynamic>> riwayat) {
   for (var entry in riwayat) {
     print("Tinggi: ${entry['tinggi']} cm, Berat: ${entry['berat']} kg, BMI: ${entry['bmi']}, Kategori: ${entry['kategori']}");
-  }
+  }  
 }
